@@ -24,7 +24,7 @@ describe('Auth Middleware', () => {
   let errorObject = {'message': 'Invalid User ID/Password', 'status': 401, 'statusMessage': 'Unauthorized'};
   
   describe('user authentication', () => {
-    
+
     let cachedToken;
 
     it('fails a login for a user (admin) with the incorrect basic credentials', () => {
