@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const users = new mongoose.Schema({
   username: {type: String, required: true, unique: true},
@@ -17,9 +18,9 @@ users.pre('save', async function() {
 });
 
 users.statics.authenticateBasic = function(auth) {
-  let query = {username:auth.username};
+  let query = {username:auth[0]};
   return this.findOne(query)
-    .then(user => user && user.comparePassword(auth.password))
+    .then(user => user && user.comparePassword(auth[1]))
     .catch(console.error);
 };
 
